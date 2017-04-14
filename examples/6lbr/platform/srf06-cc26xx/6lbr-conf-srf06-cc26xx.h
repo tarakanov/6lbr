@@ -40,6 +40,11 @@
 /*------------------------------------------------------------------*/
 /* CC26XX 6LBR                                                    */
 /*------------------------------------------------------------------*/
+#define CC26XX_ENC28J60_CONF_CLK_PORT IOID_27//BOARD_IOID_SPI_SCK
+#define CC26XX_ENC28J60_CONF_MOSI_PORT IOID_23//BOARD_IOID_SPI_MOSI
+#define CC26XX_ENC28J60_CONF_MISO_PORT IOID_24//BOARD_IOID_SPI_MISO
+#define CC26XX_ENC28J60_CONF_CS_PORT IOID_25//IOID_14
+#define CC26XX_UART_CONF_BAUD_RATE    460800 //maximum baudrate
 
 #define LOG6LBR_LEVEL_DEFAULT LOG6LBR_LEVEL_INFO
 
@@ -93,6 +98,6 @@
 #define LOG6LBR_STATIC              1
 
 #undef NETSTACK_CONF_RDC
-#define NETSTACK_CONF_RDC     nullrdc_driver
+#define NETSTACK_CONF_RDC     contikimac_driver
 
 #endif /* SIXLBR_CONF_CC26XX_H */

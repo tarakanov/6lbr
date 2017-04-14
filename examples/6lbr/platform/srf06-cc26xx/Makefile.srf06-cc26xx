@@ -18,14 +18,6 @@ SMALL=1
 #Currently only gpio is supported on CC26xx/CC13xx
 CC26XX_ENC28J60_ARCH?=gpio
 
-#Configure ENC28J60 Chip Select (CS) pin for Sensortag or Launchpad
-#For Lauchpad it is IOID_14, for Sensortag it is IOID_20
-ifeq ($(BOARD),sensortag/cc2650)
-CFLAGS += -DBOARD_SENSORTAG
-else
-CFLAGS += -DBOARD_LAUNCHPAD
-endif
-
 #Define the location of the NVM configuration : int, ext
 #int is the embedded code flash
 #ext is the external flash, only present on Sensortag and Launchpad
@@ -45,45 +37,45 @@ bin_$(TARGET)/cetic_6lbr_smart_bridge.$(CC26XX_FW):
 	mkdir -p bin_$(TARGET)
 	mv cetic-6lbr.$(CC26XX_FW) bin_$(TARGET)/cetic_6lbr_smart_bridge.$(CC26XX_FW)
 
-bin_$(TARGET)/cetic_6lbr_rpl_relay.$(CC26XX_FW):
-	$(MAKE) CETIC_6LBR_TRANSPARENTBRIDGE=1 CETIC_6LBR_LEARN_RPL_MAC=1 $(CONF)
-	mkdir -p bin_$(TARGET)
-	mv cetic-6lbr.$(CC26XX_FW) bin_$(TARGET)/cetic_6lbr_rpl_relay.$(CC26XX_FW)
+#bin_$(TARGET)/cetic_6lbr_rpl_relay.$(CC26XX_FW):
+#	$(MAKE) CETIC_6LBR_TRANSPARENTBRIDGE=1 CETIC_6LBR_LEARN_RPL_MAC=1 $(CONF)
+#	mkdir -p bin_$(TARGET)
+#	mv cetic-6lbr.$(CC26XX_FW) bin_$(TARGET)/cetic_6lbr_rpl_relay.$(CC26XX_FW)
 
-bin_$(TARGET)/cetic_6lbr_full_transparent_bridge.$(CC26XX_FW):
-	$(MAKE) CETIC_6LBR_TRANSPARENTBRIDGE=1 CETIC_6LBR_LEARN_RPL_MAC=0 $(CONF)
-	mkdir -p bin_$(TARGET)
-	mv cetic-6lbr.$(CC26XX_FW) bin_$(TARGET)/cetic_6lbr_full_transparent_bridge.$(CC26XX_FW)
+#bin_$(TARGET)/cetic_6lbr_full_transparent_bridge.$(CC26XX_FW):
+#	$(MAKE) CETIC_6LBR_TRANSPARENTBRIDGE=1 CETIC_6LBR_LEARN_RPL_MAC=0 $(CONF)
+#	mkdir -p bin_$(TARGET)
+#	mv cetic-6lbr.$(CC26XX_FW) bin_$(TARGET)/cetic_6lbr_full_transparent_bridge.$(CC26XX_FW)
 
 bin_$(TARGET)/cetic_6lbr_router.$(CC26XX_FW):
 	$(MAKE) CETIC_6LBR_ROUTER=1 $(CONF)
 	mkdir -p bin_$(TARGET)
 	mv cetic-6lbr.$(CC26XX_FW) bin_$(TARGET)/cetic_6lbr_router.$(CC26XX_FW)
 
-bin_$(TARGET)/cetic_6lbr_ndp_router.$(CC26XX_FW):
-	$(MAKE) CETIC_6LBR_ROUTER=1 CETIC_6LBR_NDP_ROUTER=1 $(CONF)
-	mkdir -p bin_$(TARGET)
-	mv cetic-6lbr.$(CC26XX_FW) bin_$(TARGET)/cetic_6lbr_ndp_router.$(CC26XX_FW)
+#bin_$(TARGET)/cetic_6lbr_ndp_router.$(CC26XX_FW):
+#	$(MAKE) CETIC_6LBR_ROUTER=1 CETIC_6LBR_NDP_ROUTER=1 $(CONF)
+#	mkdir -p bin_$(TARGET)
+#	mv cetic-6lbr.$(CC26XX_FW) bin_$(TARGET)/cetic_6lbr_ndp_router.$(CC26XX_FW)
 
-bin_$(TARGET)/cetic_6lbr_6lr.$(CC26XX_FW):
-	$(MAKE) CETIC_6LBR_6LR=1 $(CONF_6LR)
-	mkdir -p bin_$(TARGET)
-	mv cetic-6lbr.$(CC26XX_FW) bin_$(TARGET)/cetic_6lbr_6lr.$(CC26XX_FW)
+#bin_$(TARGET)/cetic_6lbr_6lr.$(CC26XX_FW):
+#	$(MAKE) CETIC_6LBR_6LR=1 $(CONF_6LR)
+#	mkdir -p bin_$(TARGET)
+#	mv cetic-6lbr.$(CC26XX_FW) bin_$(TARGET)/cetic_6lbr_6lr.$(CC26XX_FW)
 
 all:
 	rm -rf bin_$(TARGET)
 	mkdir -p bin_$(TARGET)
 	$(MAKE) clean
 	$(MAKE) bin_$(TARGET)/cetic_6lbr_smart_bridge.$(CC26XX_FW)
-	$(MAKE) clean
-	$(MAKE) bin_$(TARGET)/cetic_6lbr_rpl_relay.$(CC26XX_FW)
-	$(MAKE) clean
-	$(MAKE) bin_$(TARGET)/cetic_6lbr_full_transparent_bridge.$(CC26XX_FW)
+#	$(MAKE) clean
+#	$(MAKE) bin_$(TARGET)/cetic_6lbr_rpl_relay.$(CC26XX_FW)
+#	$(MAKE) clean
+#	$(MAKE) bin_$(TARGET)/cetic_6lbr_full_transparent_bridge.$(CC26XX_FW)
 	$(MAKE) clean
 	$(MAKE) bin_$(TARGET)/cetic_6lbr_router.$(CC26XX_FW)
-	$(MAKE) clean
-	$(MAKE) bin_$(TARGET)/cetic_6lbr_ndp_router.$(CC26XX_FW)
-	$(MAKE) clean
-	$(MAKE) bin_$(TARGET)/cetic_6lbr_6lr.$(CC26XX_FW)
+#	$(MAKE) clean
+#	$(MAKE) bin_$(TARGET)/cetic_6lbr_ndp_router.$(CC26XX_FW)
+#	$(MAKE) clean
+#	$(MAKE) bin_$(TARGET)/cetic_6lbr_6lr.$(CC26XX_FW)
 
 .PHONY: bin_$(TARGET)/*
