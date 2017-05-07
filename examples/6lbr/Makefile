@@ -93,6 +93,10 @@ ifneq ($(WITH_COAPSERVER),0)
 APPS += er-coap rest-engine coap
 endif
 
+ifneq ($(WITH_COAPCLIENT),0)
+APPS += er-coap rest-engine coap
+PROJECT_SOURCEFILES += coap-client.c
+endif
 ifneq ($(WITH_TINYDTLS), 0)
 APPS += tinydtls
 CFLAGS += -DWITH_TINYDTLS=1

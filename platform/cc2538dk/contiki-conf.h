@@ -135,7 +135,7 @@ typedef uint32_t rtimer_clock_t;
  * @{
  */
 #ifndef UART_CONF_ENABLE
-#define UART_CONF_ENABLE            1 /**< Enable/Disable UART I/O */
+#define UART_CONF_ENABLE            0 /**< Enable/Disable UART I/O */
 #endif
 
 #ifndef UART0_CONF_BAUD_RATE
@@ -147,11 +147,11 @@ typedef uint32_t rtimer_clock_t;
 #endif
 
 #ifndef SLIP_ARCH_CONF_USB
-#define SLIP_ARCH_CONF_USB          0 /**< SLIP over UART by default */
+#define SLIP_ARCH_CONF_USB          1 /**< SLIP over UART by default */
 #endif
 
 #ifndef DBG_CONF_USB
-#define DBG_CONF_USB                0 /**< All debugging over UART by default */
+#define DBG_CONF_USB                1 /**< All debugging over UART by default */
 #endif
 
 #ifndef SERIAL_LINE_CONF_UART

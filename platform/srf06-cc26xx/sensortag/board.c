@@ -69,12 +69,12 @@ static void
 shutdown_handler(uint8_t mode)
 {
   if(mode == LPM_MODE_SHUTDOWN) {
-    buzzer_stop();
-    SENSORS_DEACTIVATE(bmp_280_sensor);
-    SENSORS_DEACTIVATE(opt_3001_sensor);
-    SENSORS_DEACTIVATE(tmp_007_sensor);
-    SENSORS_DEACTIVATE(hdc_1000_sensor);
-    SENSORS_DEACTIVATE(mpu_9250_sensor);
+    //buzzer_stop();
+    //SENSORS_DEACTIVATE(bmp_280_sensor);
+    //SENSORS_DEACTIVATE(opt_3001_sensor);
+    //SENSORS_DEACTIVATE(tmp_007_sensor);
+    //SENSORS_DEACTIVATE(hdc_1000_sensor);
+    //SENSORS_DEACTIVATE(mpu_9250_sensor);
     ti_lib_gpio_clear_dio(BOARD_IOID_MPU_POWER);
   }
 
