@@ -104,8 +104,8 @@ eth_drv_init()
   LOG6LBR_ETHADDR(INFO, &eth_mac_addr, "Eth MAC address : ");
   eth_mac_addr_ready = 1;
 
-  enc28j60_init(eth_mac_addr);
-  process_start(&eth_drv_process, NULL);
+  //enc28j60_init(eth_mac_addr);
+  //process_start(&eth_drv_process, NULL);
   ethernet_ready = 1;
 }
 /*---------------------------------------------------------------------------*/

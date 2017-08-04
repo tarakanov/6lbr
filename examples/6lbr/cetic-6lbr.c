@@ -523,6 +523,7 @@ cetic_6lbr_init_finalize(void)
 #if CETIC_6LBR_IP64
   if((nvm_data.global_flags & CETIC_GLOBAL_IP64) != 0) {
     LOG6LBR_INFO("Starting IP64\n");
+    IP64_UIP_FALLBACK_INTERFACE.init();
     ip64_eth_addr_set((struct ip64_eth_addr *)eth_mac_addr);
     if((nvm_data.eth_ip64_flags & CETIC_6LBR_IP64_RFC6052_PREFIX) != 0) {
       uip_ip6addr_t ip64_prefix = {{ 0, 0x64, 0xff, 0x9b, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
@@ -641,7 +642,9 @@ PROCESS_THREAD(cetic_6lbr_process, ev, data)
   }
 #endif
 
+//#ifndef WITH_IP64_SLIP
   eth_drv_init();
+//#endif
 
   while(!ethernet_ready) {
     PROCESS_PAUSE();

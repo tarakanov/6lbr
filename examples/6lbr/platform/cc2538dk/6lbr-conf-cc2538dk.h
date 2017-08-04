@@ -37,28 +37,34 @@
 #ifndef SIXLBR_CONF_CC2538DK_H
 #define SIXLBR_CONF_CC2538DK_H
 
+
+#define DBG_CONF_USB                0
+#define SLIP_ARCH_CONF_USB 1
+#undef CC2538_CONF_QUIET
+#define USB_SERIAL_CONF_ENABLE 1
+//#define SLIP_CONF_ANSWER_MAC_REQUEST
 /*------------------------------------------------------------------*/
 /* CC2538DK 6LBR                                                    */
 /*------------------------------------------------------------------*/
 
-#define LOG6LBR_LEVEL_DEFAULT LOG6LBR_LEVEL_INFO
+#define LOG6LBR_LEVEL_DEFAULT 127
 
-#define LOG6LBR_SERVICE_DEFAULT   LOG6LBR_SERVICE_ALL
+#define LOG6LBR_SERVICE_DEFAULT   -1
 
 #if WEBSERVER
 #undef NBR_TABLE_CONF_MAX_NEIGHBORS
-#define NBR_TABLE_CONF_MAX_NEIGHBORS     25
+#define NBR_TABLE_CONF_MAX_NEIGHBORS     20
 
 #undef UIP_CONF_MAX_ROUTES
-#define UIP_CONF_MAX_ROUTES   40
+#define UIP_CONF_MAX_ROUTES   20
 
 #else
 
 #undef NBR_TABLE_CONF_MAX_NEIGHBORS
-#define NBR_TABLE_CONF_MAX_NEIGHBORS   30
+#define NBR_TABLE_CONF_MAX_NEIGHBORS   20
 
 #undef UIP_CONF_MAX_ROUTES
-#define UIP_CONF_MAX_ROUTES   70
+#define UIP_CONF_MAX_ROUTES   20
 
 #endif
 
