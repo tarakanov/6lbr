@@ -39,8 +39,8 @@
 #include <stdio.h>
 
 #define UIP_IP_BUF        ((struct uip_ip_hdr *)&uip_buf[UIP_LLH_LEN])
-
-#define DEBUG DEBUG_NONE
+#define BAUD2UBR(x) x
+#define DEBUG DEBUG_FULL
 #include "net/ip/uip-debug.h"
 
 static uip_ipaddr_t last_sender;
@@ -110,7 +110,7 @@ static void
 init(void)
 {
   PRINTF("ip64-slip-interface: init\n");
-  //  slip_arch_init(BAUD2UBR(115200));
+  slip_arch_init(BAUD2UBR(115200));
   process_start(&slip_process, NULL);
   slip_set_input_callback(input_callback);
 }
@@ -122,12 +122,12 @@ output(void)
 
   PRINTF("ip64-slip-interface: output source ");
 
-  /*
+
   PRINT6ADDR(&UIP_IP_BUF->srcipaddr);
   PRINTF(" destination ");
   PRINT6ADDR(&UIP_IP_BUF->destipaddr);
   PRINTF("\n");
-  */
+
   if(uip_ipaddr_cmp(&last_sender, &UIP_IP_BUF->srcipaddr)) {
     PRINTF("ip64-interface: output, not sending bounced message\n");
   } else {

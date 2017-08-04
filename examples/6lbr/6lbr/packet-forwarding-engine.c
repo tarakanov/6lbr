@@ -72,7 +72,11 @@
 #include "multi-radio.h"
 #endif
 
+#ifdef WITH_IP64_SLIP
+#include "dev/slip.h"
+#else
 #include "eth-drv.h"
+#endif
 
 extern const linkaddr_t linkaddr_null;
 
@@ -548,7 +552,11 @@ eth_output(const uip_lladdr_t * src, const uip_lladdr_t * dest)
   }
 #endif
   LOG6LBR_PRINTF(PACKET, PF_OUT, "eth_output: Sending packet to Ethernet\n");
+#ifdef WITH_IP64_SLIP
+  slip_send();
+#else
   eth_drv_send(uip_buf, uip_len + UIP_LLH_LEN);
+#endif
 
   return 1;
 }

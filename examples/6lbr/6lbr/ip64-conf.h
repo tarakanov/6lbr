@@ -31,6 +31,8 @@
 #ifndef IP64_CONF_H
 #define IP64_CONF_H
 
+#ifndef WITH_IP64_SLIP
+
 #include "ip64-eth-driver.h"
 #include "ip64-eth-interface.h"
 
@@ -38,5 +40,16 @@
 #define IP64_CONF_INPUT                  ip64_eth_interface_input
 
 #define IP64_CONF_ETH_DRIVER             ip64_eth_driver
+#else
+
+#include "ip64-null-driver.h"
+#include "ip64-slip-interface.h"
+
+#define IP64_CONF_UIP_FALLBACK_INTERFACE ip64_slip_interface
+#define IP64_CONF_INPUT                  ip64_slip_interface_input
+
+#define IP64_CONF_ETH_DRIVER             ip64_null_driver
+
+#endif
 
 #endif /* IP64_CONF_H */

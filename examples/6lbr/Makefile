@@ -1,5 +1,13 @@
 CONTIKI_PROJECT = cetic-6lbr
 
+IP64_SLIP = 1
+
+ifneq ($(IP64_SLIP),0)
+CFLAGS +=-DWITH_IP64_SLIP=1
+CFLAGS +=-DSLIP_CONF_BUF_NB=1
+CFLAGS +=-DIP64_ADDRMAP_CONF_ENTRIES=2
+endif
+
 # Default mode selection
 
 CETIC_6LBR_SMARTBRIDGE=0
@@ -116,8 +124,11 @@ endif
 
 ifeq ($(WITH_IP64),1)
 MODULES += core/net/ip64 core/net/ip64-addr
-PROJECT_SOURCEFILES += ip64-eth-driver.c
+ifeq ($(IP64_SLIP),0)
+#
 endif
+endif
+PROJECT_SOURCEFILES += ip64-eth-driver.c
 
 LDGENFLAGS += $(CFLAGS)
 

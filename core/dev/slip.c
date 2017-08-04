@@ -56,7 +56,7 @@ PROCESS(slip_process, "SLIP driver");
 
 uint8_t slip_active;
 
-#if 1
+#if 0
 #define SLIP_STATISTICS(statement)
 #else
 uint16_t slip_rubbish, slip_twopackets, slip_overflow, slip_ip_drop;
@@ -246,6 +246,7 @@ rxbuf_init(void)
 static uint16_t
 slip_poll_handler(uint8_t *outbuf, uint16_t blen)
 {
+    printf("hello from slip_poll_handler\n");
   /* This is a hack and won't work across buffer edge! */
   if(rxbuf[begin] == 'C') {
     int i;
@@ -429,6 +430,7 @@ slip_poll_handler(uint8_t *outbuf, uint16_t blen)
 PROCESS_THREAD(slip_process, ev, data)
 {
   PROCESS_BEGIN();
+  printf("Start slip process\n");
 
   rxbuf_init();
 
@@ -436,6 +438,7 @@ PROCESS_THREAD(slip_process, ev, data)
     PROCESS_YIELD_UNTIL(ev == PROCESS_EVENT_POLL);
     
     slip_active = 1;
+    printf("hello from slip poll \n");
 
     /* Move packet from rxbuf to buffer provided by uIP. */
     uip_len = slip_poll_handler(&uip_buf[UIP_LLH_LEN],

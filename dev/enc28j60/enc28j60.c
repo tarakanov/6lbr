@@ -34,7 +34,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define DEBUG 0
+#define DEBUG 1
 #if DEBUG
 #define PRINTF(...) printf(__VA_ARGS__)
 #else
@@ -486,9 +486,9 @@ enc28j60_init(const uint8_t *mac_addr)
   memcpy(enc_mac_addr, mac_addr, 6);
 
   /* Start watchdog process */
-  process_start(&enc_watchdog_process, NULL);
+  //process_start(&enc_watchdog_process, NULL);
 
-  reset();
+  //reset();
 
   PRINTF("ENC28J60 rev. B%d\n", readrev());
 
@@ -681,7 +681,7 @@ PROCESS_THREAD(enc_watchdog_process, ev, data)
     PRINTF("enc28j60: test received_packet %d > sent_packets %d\n", received_packets, sent_packets);
     if(received_packets <= sent_packets) {
       PRINTF("enc28j60: resetting chip\n");
-      reset();
+      //reset();
     }
     received_packets = 0;
     sent_packets = 0;
