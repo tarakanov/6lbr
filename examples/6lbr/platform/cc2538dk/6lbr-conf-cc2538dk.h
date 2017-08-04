@@ -38,8 +38,12 @@
 #define SIXLBR_CONF_CC2538DK_H
 
 
-#define DBG_CONF_USB                0
-#define SLIP_ARCH_CONF_USB 1
+#define DBG_CONF_USB                1 // 0 - debug to UART, 1 - debug to USB
+#define DBG_CONF_UART               0 // 0 - debug to UART (only relevant if DBG_CONF_USB is 0)
+
+#define SLIP_ARCH_CONF_USB          0 // 1 - SLIP on USB, 0 - SLIP on UART
+#define SLIP_ARCH_CONF_UART         0 // UART number to use with SLIP
+
 #undef CC2538_CONF_QUIET
 #define USB_SERIAL_CONF_ENABLE 1
 //#define SLIP_CONF_ANSWER_MAC_REQUEST
