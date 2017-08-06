@@ -197,11 +197,11 @@ typedef struct {
 
 //IP64 Configuration
 #ifndef CETIC_6LBR_NVM_DEFAULT_IP64_FLAGS
-#define CETIC_6LBR_NVM_DEFAULT_IP64_FLAGS               0
+#define CETIC_6LBR_NVM_DEFAULT_IP64_FLAGS               (CETIC_6LBR_IP64_SPECIAL_PORTS | CETIC_6LBR_IP64_RFC6052_PREFIX)
 #endif
-#define CETIC_6LBR_NVM_DEFAULT_IP64_ADDRESS(a)          uip_ipaddr(a, 172, 16, 0, 2)
+#define CETIC_6LBR_NVM_DEFAULT_IP64_ADDRESS(a)          uip_ipaddr(a, 192, 168, 240, 2)
 #define CETIC_6LBR_NVM_DEFAULT_IP64_NETMASK(a)          uip_ipaddr(a, 255, 255, 255, 0)
-#define CETIC_6LBR_NVM_DEFAULT_IP64_GATEWAY(a)          uip_ipaddr(a, 172, 16, 0, 1)
+#define CETIC_6LBR_NVM_DEFAULT_IP64_GATEWAY(a)          uip_ipaddr(a, 192, 168, 240, 1)
 
 //Version 1 configuration data
 #ifndef CETIC_6LBR_NVM_DEFAULT_GLOBAL_FLAGS
